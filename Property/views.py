@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import *
 
 
@@ -7,8 +7,13 @@ from .forms import *
 
 def host(request):
     form = HostPersonalRoomForm()
-    context = {'form': form}
+    room = CreateRoomForm()
+    context = {'form': form, 'room': room}
 
     if request.method == 'POST':
-        print(request.POST)
+        form = HostPersonalRoomForm(request.POST)
+        room = CreateRoomForm(request.POST)
+        if form.is_valid() and room.is_valid():
+            user_id = form.data.get('user_id')
+            print(user_id)
     return render(request, 'host/host.html', context)

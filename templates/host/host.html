@@ -5,6 +5,7 @@
     <form method="post" action="">
     {% csrf_token %}
         {{ form }}
+        {{ room }}
     <input type="submit" name="submit">
     </form>
 {% endblock %}
