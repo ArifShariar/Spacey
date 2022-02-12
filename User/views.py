@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import User
 
 
 def welcome(request):
@@ -11,3 +12,12 @@ def login(request):
 
 def register(request):
     return render(request, 'auth/register.html')
+
+
+# remember, pk has to be same as the url
+def homepage(request, pk):
+    user = User.objects.get(pk=pk)
+    context = {
+        'name': user.name,
+    }
+    return render(request, 'home/homepage.html', context)
