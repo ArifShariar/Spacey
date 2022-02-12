@@ -1,8 +1,14 @@
 from django.shortcuts import render
+from .forms import *
+
 
 # Create your views here.
 
 
 def host(request):
-    context = {}
-    return render(request, 'host/host.html')
+    form = HostPersonalRoomForm()
+    context = {'form': form}
+
+    if request.method == 'POST':
+        print(request.POST)
+    return render(request, 'host/host.html', context)
