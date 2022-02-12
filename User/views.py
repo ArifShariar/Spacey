@@ -18,6 +18,14 @@ def register(request):
 def homepage(request, pk):
     user = User.objects.get(pk=pk)
     context = {
-        'name': user.name,
+        'user': user,
     }
     return render(request, 'home/homepage.html', context)
+
+
+def user_profile(request, pk):
+    user = User.objects.get(pk=pk)
+    context = {
+        'user': user,
+    }
+    return render(request, 'home/user_profile.html', context)

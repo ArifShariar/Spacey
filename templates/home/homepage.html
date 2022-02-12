@@ -1,8 +1,11 @@
 {% extends 'base/base.html' %}
-{% block title %}Welcome, {{ name }}{% endblock %}
+{% block title %}Welcome, {{ user.name }}{% endblock %}
+{% block home %}{% url 'homepage' user.id %}{% endblock %}
+{% block profile %}{% url 'profile' user.id %}{% endblock %}
 {% block content %}
-    <h1>Welcome, {{ name }}</h1>
+    <h1>Welcome, {{ user.name }}</h1>
     <p>
         This is the home page.
+    <a href="{% url 'profile' user.id%}">Visit Profile</a>
     </p>
 {% endblock %}

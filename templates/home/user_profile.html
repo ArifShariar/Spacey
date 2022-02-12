@@ -1,0 +1,9 @@
+{% extends 'base/base.html' %}
+{% block title %}{{ user.name }}{{% endblock %}
+{% block home %}{% url 'homepage' user.id %}{% endblock %}
+{% block profile %}{% url 'profile' user.id %}{% endblock %}
+{% block content %}
+    {{ user.name }}<br>
+    {{ user.email }}<br>
+    {{ user.phoneNumber }}<br>
+{% endblock %}
