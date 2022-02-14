@@ -38,7 +38,8 @@ class PropertyFacilities(models.Model):
 
 
 class Personal(Storage):
-    pricePerDay = models.IntegerField()
+    price_per_day = models.IntegerField()
+    rooms = models.ManyToManyField('Room')
 
     def __str__(self):
         return self.name
@@ -51,7 +52,6 @@ class Personal(Storage):
 class Room(models.Model):
     room_type = models.CharField(max_length=100)
     room_description = models.CharField(max_length=100)
-    personal_storage = models.ForeignKey(Personal, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.room_type
@@ -61,7 +61,8 @@ class Room(models.Model):
 
 
 class Business(Storage):
-    pricePerDay = models.IntegerField()
+    price_per_day = models.IntegerField()
+    rooms = models.ManyToManyField('BusinessRooms')
 
     def __str__(self):
         return self.name
@@ -73,7 +74,6 @@ class Business(Storage):
 class BusinessRooms(models.Model):
     room_type = models.CharField(max_length=100)
     room_description = models.CharField(max_length=100)
-    business_storage = models.ForeignKey(Business, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.room_type
@@ -83,7 +83,7 @@ class BusinessRooms(models.Model):
 
 
 class ClimateControlled(Storage):
-    pricePerDay = models.IntegerField()
+    price_per_day = models.IntegerField()
     machinery = models.ManyToManyField('Machinery')
 
     def __str__(self):
@@ -105,7 +105,7 @@ class Machinery(models.Model):
 
 
 class Garage(Storage):
-    pricePerHour = models.IntegerField()
+    price_per_hour = models.IntegerField()
     vehicles = models.ManyToManyField('Vehicle')
 
     def __str__(self):
