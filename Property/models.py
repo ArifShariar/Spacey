@@ -7,7 +7,7 @@ from django.db import models
 # will inherit from this Storage Base class
 class Storage(models.Model):
     user_id = models.ForeignKey('User.User', on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
+    property_name = models.CharField(max_length=100)
     description = models.CharField(max_length=100)
     location = models.CharField(max_length=255)
     size = models.IntegerField()
@@ -42,7 +42,7 @@ class Personal(Storage):
     rooms = models.ManyToManyField('Room')
 
     def __str__(self):
-        return self.name
+        return self.property_name
 
     class Meta:
         verbose_name_plural = 'Personal'
@@ -65,7 +65,7 @@ class Business(Storage):
     rooms = models.ManyToManyField('BusinessRooms')
 
     def __str__(self):
-        return self.name
+        return self.property_name
 
     class Meta:
         verbose_name_plural = 'Business Storages'
@@ -87,7 +87,7 @@ class ClimateControlled(Storage):
     machinery = models.ManyToManyField('Machinery')
 
     def __str__(self):
-        return self.name
+        return self.property_name
 
     class Meta:
         verbose_name_plural = 'Climate Controlled'
@@ -109,7 +109,7 @@ class Garage(Storage):
     vehicles = models.ManyToManyField('Vehicle')
 
     def __str__(self):
-        return self.name
+        return self.property_name
 
     class Meta:
         verbose_name_plural = 'Garages'

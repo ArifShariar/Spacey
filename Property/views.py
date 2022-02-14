@@ -11,6 +11,12 @@ def host(request):
     if request.method == 'POST':
         form = HostPersonalRoomForm(request.POST)
         if form.is_valid():
-            user_id = form.data.get('user_id')
-            print(user_id)
-    return render(request, 'host/host.html', context)
+            name = form.data.get('property_name')
+            description = form.data.get('description')
+            location = form.data.get('location')
+            size = form.data.get('size')
+            facilities = form.data.get('facilities')
+            rooms = form.data.get('rooms')
+            print(name, description, location, size, facilities, rooms)
+            form.save()
+    return render(request, 'host/personal_room_host.html', context)
