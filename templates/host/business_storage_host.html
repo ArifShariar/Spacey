@@ -1,0 +1,58 @@
+{% extends 'base/base.html' %}
+{% load crispy_forms_filters %}
+{% block title %} Host Business Storage {% endblock %}
+{% block content %}
+    {% load crispy_forms_tags %}
+    <div>
+    <h2>Host Business Storage</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                {{ form.user_id|as_crispy_field }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                {{ form.property_name|as_crispy_field}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                {{ form.description|as_crispy_field}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                {{ form.location|as_crispy_field}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                {{ form.size|as_crispy_field}}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                {{ form.price_per_day|as_crispy_field}}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                {{ form.facilities|as_crispy_field}}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                {{ form.rooms|as_crispy_field}}
+            </div>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    </div>
+{% endblock %}
