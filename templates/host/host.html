@@ -1,12 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Hosting</title>
-</head>
-<body>
-<h1>
-    Start hosting here
-</h1>
-</body>
-</html>
+{% extends 'base/base.html' %}
+{% load crispy_forms_filters %}
+{% block title %} Hosting {% endblock %}
+{% block content %}
+    Start hosting here <br>
+    <div class="btn-group">
+        <a href="{% url 'host_personal_room' %}" class="btn btn-primary">Host Personal Room</a>
+    </div>
+    <br>
+    <div class="btn-group">
+        <a href="{% url 'host_business_storage' %}" class="btn btn-primary">Host Business Storage</a>
+    </div>
+    <br>
+    <div class="btn-group">
+        <a href="{% url 'host_climate_controlled_storage' %}" class="btn btn-primary">Host Climate Controlled Storage</a>
+    </div>
+    <br>
+    <div class="btn-group">
+        <a href="{% url 'host_garage' %}" class="btn btn-primary">Host Garage</a>
+    </div>
+    <br>
+{% endblock %} %}
