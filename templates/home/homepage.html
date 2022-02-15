@@ -8,4 +8,9 @@
         This is the home page.
     <a href="{% url 'profile' user.id%}">Visit Profile</a>
     </p>
+
+    <p>
+        Want to host?
+        <a href="{%  url 'host' user.id%}"> Start hosting! </a>
+    </p>
 {% endblock %}

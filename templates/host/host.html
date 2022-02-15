@@ -4,19 +4,19 @@
 {% block content %}
     Start hosting here <br>
     <div class="btn-group">
-        <a href="{% url 'host_personal_room' %}" class="btn btn-primary">Host Personal Room</a>
+        <a href="{% url 'host_personal_room' user.id %}" class="btn btn-primary">Host Personal Room</a>
     </div>
     <br>
     <div class="btn-group">
-        <a href="{% url 'host_business_storage' %}" class="btn btn-primary">Host Business Storage</a>
+        <a href="{% url 'host_business_storage' user.id %}" class="btn btn-primary">Host Business Storage</a>
     </div>
     <br>
     <div class="btn-group">
-        <a href="{% url 'host_climate_controlled_storage' %}" class="btn btn-primary">Host Climate Controlled Storage</a>
+        <a href="{% url 'host_climate_controlled_storage' user.id %}" class="btn btn-primary">Host Climate Controlled Storage</a>
     </div>
     <br>
     <div class="btn-group">
-        <a href="{% url 'host_garage' %}" class="btn btn-primary">Host Garage</a>
+        <a href="{% url 'host_garage' user.id %}" class="btn btn-primary">Host Garage</a>
     </div>
     <br>
 {% endblock %} %}

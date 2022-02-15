@@ -11,7 +11,7 @@ def host(request, pk):
     user = User.objects.get(pk=pk)
     if user:
         print(user.name)
-    context = {}
+    context = {'user': user}
     return render(request, 'host/host.html', context)
 
 
