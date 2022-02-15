@@ -14,7 +14,7 @@ These resources are available [here](https://github.com/ArifShariar/CSE326-ISD)
 3. Activate virtual environment by `source spaceyenv/bin/activate`
 4. Or, the most easiest way, clone this project via [PyCharm](https://www.jetbrains.com/pycharm/) and let it handle the rest ;)
 5. In the terminal with virtual environment activated, run `pip install -r requirements.txt`
-6. To create necessary databases, run  `python3 manage.py makemigrayions` and `python3 manage.py migrate`
+6. To create necessary databases, run  `python3 manage.py makemigrations` and `python3 manage.py migrate`
 7. Run the server by `python3 manage.py runserver`
 8. Create superuser with your own credentials to view and manage the databases from django admin panel.
 
