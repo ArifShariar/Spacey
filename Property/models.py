@@ -14,7 +14,6 @@ class Storage(models.Model):
     # TODO: ADD IMAGE FIELD
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    facilities = models.ManyToManyField('PropertyFacilities')
 
     class Meta:
         abstract = True

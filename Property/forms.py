@@ -7,7 +7,7 @@ class HostPersonalRoomForm(forms.ModelForm):
     class Meta:
         model = Personal
         fields = ('user_id', 'property_name', 'description', 'location', 'size',
-                  'facilities', 'price_per_day', 'rooms')
+                   'price_per_day', 'rooms')
         # the widgets are used to display the form in the html page
         # much harder to control in this method than in the raw html code ( i think )
 
@@ -32,18 +32,18 @@ class HostBusinessStorageForm(forms.ModelForm):
     class Meta:
         model = Business
         fields = ('user_id', 'property_name', 'description', 'location', 'size',
-                  'facilities', 'price_per_day', 'rooms')
+                  'price_per_day', 'rooms')
 
 
 class HostClimateControlledStorageForm(forms.ModelForm):
     class Meta:
         model = ClimateControlled
         fields = ('user_id', 'property_name', 'description', 'location', 'size',
-                  'facilities', 'price_per_day', 'machinery')
+                  'price_per_day', 'machinery')
 
 
 class HostGarageForm(forms.ModelForm):
     class Meta:
         model = Garage
         fields = ('user_id', 'property_name', 'description', 'location', 'size',
-                  'facilities', 'price_per_hour', 'vehicles')
+                  'price_per_hour', 'vehicles')
