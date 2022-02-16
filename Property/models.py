@@ -5,6 +5,11 @@ from django.db import models
 # storage is declared as abstract class
 # other classes like personal room ,business storage, garage and climate controlled
 # will inherit from this Storage Base class
+from django.utils import timezone
+
+import Property
+
+
 class Storage(models.Model):
     user_id = models.ForeignKey('User.User', on_delete=models.CASCADE)
     property_name = models.CharField(max_length=100)
@@ -16,8 +21,16 @@ class Storage(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        abstract = True
+        abstract = False
 
+
+class Photo(models.Model):
+    image = models.ImageField(null=True, blank=False,default=0)
+    description = models.TextField()
+    storageID=models.IntegerField()
+
+    def __str__(self):
+        return self.description
 
 # property facilities table
 # will be created in database

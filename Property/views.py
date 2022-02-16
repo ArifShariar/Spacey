@@ -80,3 +80,19 @@ def host_garage(request, pk):
             form.save()
             return redirect(hosting_successful)
     return render(request, 'host/garage_host.html', context)
+
+def addPhoto(request,pk):
+    user = request.user
+
+    if request.method == 'POST':
+        images = request.FILES.getlist('images')
+
+
+        for image in images:
+            photo = Photo.objects.create(
+                image=image
+            )
+
+        return redirect('gallery')
+
+    return render(request, 'photos/add.html')
