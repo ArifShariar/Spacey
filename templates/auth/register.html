@@ -1,9 +1,51 @@
 {% extends 'base/base.html' %}
-
+{% load crispy_forms_filters %}
 {% block title %}Register{% endblock %}
 
 {% block content %}
-    <div>
-    This is the signup page
+    {% load crispy_forms_tags %}
+    <h2>
+        Register
+    </h2>
+    <form method="post">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-lg-6 col-md-12">
+            {{ form.name|as_crispy_field }}
+        </div>
     </div>
+
+    <div class="row">
+        <div class="col-lg-6 col-md-12">
+            {{ form.email|as_crispy_field }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 col-md-12">
+            {{ form.password|as_crispy_field }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 col-md-12">
+            {{ form.nid_number|as_crispy_field }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 col-md-12">
+            {{ form.date_of_birth|as_crispy_field }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 col-md-12">
+            {{ form.phone_number|as_crispy_field }}
+        </div>
+    </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+    </form>
 {% endblock %}
