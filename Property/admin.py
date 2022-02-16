@@ -2,7 +2,10 @@ from django.contrib import admin
 
 from . models import *
 
-admin.site.register(PropertyFacilities)
+admin.site.register(PersonalPropertyFacilities)
+admin.site.register(BusinessPropertyFacilities)
+admin.site.register(ClimateControlledPropertyFacilities)
+admin.site.register(GaragePropertyFacilities)
 admin.site.register(Personal)
 admin.site.register(Room)
 admin.site.register(Business)
