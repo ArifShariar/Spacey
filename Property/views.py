@@ -39,7 +39,7 @@ def host_personal_room(request, pk):
             rooms = form.data.get('rooms')
             print(name, description, location, size, facilities, rooms)
             form.save()
-            return redirect(hosting_successful)
+            return redirect(hosting_successful, pk)
     return render(request, 'host/personal_room_host.html', context)
 
 
@@ -52,7 +52,7 @@ def host_business_storage(request, pk):
         form = HostBusinessStorageForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(hosting_successful)
+            return redirect(hosting_successful, pk)
     return render(request, 'host/business_storage_host.html', context)
 
 
@@ -65,7 +65,7 @@ def host_climate_controlled_storage(request, pk):
         form = HostClimateControlledStorageForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(hosting_successful)
+            return redirect(hosting_successful, pk)
     return render(request, 'host/climate_controlled_storage_host.html', context)
 
 
@@ -78,5 +78,5 @@ def host_garage(request, pk):
         form = HostGarageForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(hosting_successful)
+            return redirect(hosting_successful, pk)
     return render(request, 'host/garage_host.html', context)

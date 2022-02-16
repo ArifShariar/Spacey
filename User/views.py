@@ -1,14 +1,34 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import *
-from django.contrib.auth.hashers import make_password, check_password
+
+from django.contrib import messages
 
 
 def welcome(request):
     return render(request, 'home/welcome.html')
 
 
-def login(request):
-    return render(request, 'auth/login.html')
+def loginUser(request):
+    context = {}
+
+    if request.method == 'POST':
+        email = request.POST['email']
+        password = request.POST['password']
+        # get user from database by email
+        user = User.objects.filter(email=email)
+        if user:
+            # check if password matches
+            if password == user.get().password:
+                # print('Password matches')
+                return redirect('homepage', pk=user.get().pk)
+            else:
+                # print('Password does not match')
+                messages.error(request, 'Password does not match')
+        else:
+            # print('Email not found')
+            messages.error(request, 'Email not found')
+
+    return render(request, 'auth/login.html', context)
 
 
 def register(request):
@@ -20,7 +40,7 @@ def register(request):
             user_name = form.cleaned_data['name']
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
-            password = make_password(password)
+            # password = make_password(password)
             nid_number = form.cleaned_data['nid_number']
             date_of_birth = form.cleaned_data['date_of_birth']
             phone_number = form.cleaned_data['phone_number']
@@ -33,9 +53,11 @@ def register(request):
             if existing_user:
                 print('User already exists')
                 # pass this message to frontend
+                messages.error(request, 'User already exists')
                 return render(request, 'auth/register.html', context)
             else:
-                new_user = User(name=user_name, email=email, password=password, nid_number=nid_number, date_of_birth=date_of_birth, phone_number=phone_number)
+                new_user = User(name=user_name, email=email, password=password, nid_number=nid_number,
+                                date_of_birth=date_of_birth, phone_number=phone_number)
                 new_user.save()
 
             # redirect to user home page

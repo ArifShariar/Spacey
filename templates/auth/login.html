@@ -20,21 +20,25 @@
                 </div>
 
                   <div style="padding-top: 30px">
-                      <form>
+
+                      <form method="post">
+                          {% csrf_token %}
                   <p style="color:#5b80b2">Login to your Spacey account </p>
 
                   <div class="form-outline mb-4">
-                    <input type="email" id="form2Example11" class="form-control" placeholder="Phone number or email address"/>
-                    <label class="form-label" for="form2Example11">Username</label>
+                      <label class="form-label" for="email">Email</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Email address"/>
+
                   </div>
 
                   <div class="form-outline mb-4">
-                    <input type="password" id="form2Example22" class="form-control" />
-                    <label class="form-label" for="form2Example22">Password</label>
+                      <label class="form-label" for="password">Password</label>
+                    <input type="password" id="password" name="password" class="form-control" />
+
                   </div>
 
                   <div class="text-center pt-1 mb-5 pb-1">
-                    <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">Log in</button>
+                    <button type="submit" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3">Log in</button>
                     <a class="text-muted" href="#!">Forgot password?</a>
                   </div>
                     <div class="text-center">
@@ -52,6 +56,15 @@
 
 
               </div>
+                <div>
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
             </div>
               <div class="col-lg-6 d-flex">
               <img src="https://propertyfinderbd.com/public/uploads/property_thumb/e438162326dec3a13e6a2b807fc9c301.jpg" style="height: 100%; width:100%">
