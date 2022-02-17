@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import *
-
+from django.db.models import Q
 from django.contrib import messages
 
 
@@ -36,32 +36,25 @@ def register(request):
     context = {'form': form}
     if request.method == 'POST':
         form = RegisterForm(request.POST)
+
         if form.is_valid():
             user_name = form.cleaned_data['name']
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
-            # password = make_password(password)
             nid_number = form.cleaned_data['nid_number']
             date_of_birth = form.cleaned_data['date_of_birth']
             phone_number = form.cleaned_data['phone_number']
 
-            # print(user_name, email, password, nid_number, date_of_birth, phone_number)
-            # check if email and nid_number already exists
-            # if not, create new user
-            # if yes, return error
-            existing_user = User.objects.filter(email=email, nid_number=nid_number)
+            existing_user = User.objects.filter(Q(email=email) | Q(nid_number=nid_number))
             if existing_user:
-                print('User already exists')
-                # pass this message to frontend
                 messages.error(request, 'User already exists')
                 return render(request, 'auth/register.html', context)
             else:
                 new_user = User(name=user_name, email=email, password=password, nid_number=nid_number,
                                 date_of_birth=date_of_birth, phone_number=phone_number)
                 new_user.save()
-
-            # redirect to user home page
-            return render(request, 'home/welcome.html')
+                messages.success(request, 'User created successfully, please log in to continue')
+                return render(request, 'auth/login.html', context)
         else:
             context = {'form': form}
             return render(request, 'auth/register.html', context)
