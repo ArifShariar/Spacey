@@ -54,7 +54,7 @@ def register(request):
                                 date_of_birth=date_of_birth, phone_number=phone_number)
                 new_user.save()
                 messages.success(request, 'User created successfully, please log in to continue')
-                return render(request, 'auth/login.html', context)
+                return redirect('login')
         else:
             context = {'form': form}
             return render(request, 'auth/register.html', context)
