@@ -31,6 +31,10 @@ def loginUser(request):
     return render(request, 'auth/login.html', context)
 
 
+def logoutUser(request):
+    return redirect('login')
+
+
 def register(request):
     form = RegisterForm()
     context = {'form': form}
