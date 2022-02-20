@@ -2,11 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Host Successful</title>
+    <title>Hosting Successful</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <style>
+        .bg-gra-01 {
+          background: -webkit-gradient(linear, left bottom, left top, from(#fbc2eb), to(#a18cd1));
+          background: -webkit-linear-gradient(bottom, #fbc2eb 0%, #a18cd1 100%);
+          background: -moz-linear-gradient(bottom, #fbc2eb 0%, #a18cd1 100%);
+          background: -o-linear-gradient(bottom, #fbc2eb 0%, #a18cd1 100%);
+          background: linear-gradient(to top, #fbc2eb 0%, #a18cd1 100%);
+        }
+
+        .bg-gra-02 {
+            background: #917AFD 2.61%;
+          /* Chrome 10-25, Safari 5.1-6 */
+          background: -webkit-linear-gradient(to right, #917AFD 2.61%, #6246EA 96.58%);
+
+          /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+          background: linear-gradient(to right, #917AFD 2.61%, #6246EA 96.58%);
+        }
+    </style>
 </head>
-<body>
-<h1>
-    Congratulations {{ user }}!, you have successfully hosted your property!
-</h1>
+<body class="bg-gra-02 bg-gra-01">
+
+
+<div class="container">
+    <div class="row align-items-center vh-100">
+        <div class="col-6 mx-auto">
+            <div class="card shadow border">
+                <div class="card-body d-flex flex-column align-items-center p-5">
+                    <p class="card-text" align="center"><h3 style="color:lightseagreen">Congratulations {{ user }}!</h3><b>you have successfully hosted your property!</b></p>
+                    <a href="#" class="btn btn-primary">Ok</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
 </body>
 </html>
