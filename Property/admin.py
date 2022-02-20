@@ -14,4 +14,5 @@ admin.site.register(ClimateControlled)
 admin.site.register(Machinery)
 admin.site.register(Garage)
 admin.site.register(Vehicle)
+admin.site.register(Photo)
 

@@ -29,3 +29,6 @@ class HostGarageForm(forms.ModelForm):
         model = Garage
         fields = ('user_id', 'property_name', 'description', 'location', 'size', 'facilities',
                   'price_per_hour', 'vehicles')
+
+
+
