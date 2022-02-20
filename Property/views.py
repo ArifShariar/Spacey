@@ -20,7 +20,7 @@ def hosting_successful(request, pk):
     user = User.objects.get(pk=pk)
     context = {}
     if user:
-        context = {'user': user.name}
+        context = {'user': user}
 
     return render(request, 'host/hosting_success.html', context)
 
