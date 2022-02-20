@@ -19,6 +19,12 @@ class Storage(models.Model):
         abstract = True
 
 
+class Photo(models.Model):
+    image = models.ImageField(null=True, default=0)
+    storageID = models.IntegerField(default=0)
+    storageType = models.CharField(max_length=200, default=0)
+
+
 # property facilities table
 # will be created in database
 class PersonalPropertyFacilities(models.Model):
