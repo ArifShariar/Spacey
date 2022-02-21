@@ -1,7 +1,6 @@
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from User.models import User
-from Property.models import Storage
 from .forms import *
 from .models import *
 
