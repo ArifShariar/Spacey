@@ -1,140 +1,73 @@
+{#{% extends 'base/base.html' %}#}
 {% load crispy_forms_filters %}
 {% load static %}
-
-<html xmlns="http://www.w3.org/1999/html">
+{#{% block title %} Host Personal Room {% endblock %}#}
+{#{% block content %}#}
+<html>
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Host Business Storage </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}"/>
-
-    <!-- Vendor CSS-->
-    <link href="{% static 'vendor/select2/select2.min.css' %}" rel="stylesheet" media="all">
-    <link href="{% static 'vendor/datepicker/daterangepicker.css' %}" rel="stylesheet" media="all">
-    <link href="{% static 'vendor/multiselect.css' %}" rel="stylesheet">
-
-    <!-- Icons font CSS-->
-    <link href="{% static 'vendor/mdi-font/css/material-design-iconic-font.min.css' %}" rel="stylesheet" media="all">
-    <link href="{% static 'vendor/font-awesome-4.7/css/font-awesome.min.css' %}" rel="stylesheet" media="all">
-    <!-- Font special for pages-->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-     <style>
-         input {
-             width: 15px;
-             height: 15px;
-             padding: 0;
-             margin: 0;
-             vertical-align: bottom;
-             position: relative;
-             top: -1px;
-         }
-     </style>
 </head>
-<body>
-
-    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
-        <div class="wrapper wrapper--w680">
-            <div class="card card-4">
-                <div class="card-body">
-                    <h2 class="title">Host Business Storage</h2>
-                    <form method="POST">
-                        {% csrf_token %}
-                        <div class="row" id="hide">
+<style>
+</style>
+<body class="bg-gra-01 bg-gra-02">
+    {% load crispy_forms_tags %}
+    <div class="container-md p-5">
+    <div class="shadow p-3 mx-auto w-75 bg-body rounded" style="background-color: #ceebe9; font-size: 15px">
+        <div class="row mx-5 my-5 mb-5 mt-5" style="color: #357ebd">
+            <div class="col-2"></div>
+            <div class="col-8"><h1><b>Host Business Storage</b></h1></div>
+            <div class="col-2"></div>
+        </div>
+        <form method="post">
+        {% csrf_token %}
+                <div class="row" id="hide">
                     <div class="col-lg-6 col-md-12">
                         {{ form.user_id|as_crispy_field }}
                     </div>
                 </div>
-                        <div class="form-outline mb-4">
-                            {{ form.property_name|as_crispy_field}}
-                        </div>
-                        <div class="form-outline mb-4">
-                            {{ form.description|as_crispy_field}}
-                        </div>
-                        <div class="form-outline mb-4">
-                           {{ form.location|as_crispy_field}}
-                        </div>
+                <div class="row mt-5 mx-5 my-5">
+                    <div class="col-lg-10 col-md-4">
+                        {{ form.property_name|as_crispy_field}}
+                    </div>
+                </div>
 
-                        <div class="form-outline mb-4">
-                            {{ form.size|as_crispy_field}}
-                        </div>
+                <div class="row mx-5 my-5">
+                    <div class="col-lg-10 col-md-4">
+                        {{ form.description|as_crispy_field}}
+                    </div>
+                </div>
+                <div class="row mx-5 my-5">
+                    <div class="col-lg-10 col-md-4">
+                        {{ form.location|as_crispy_field}}
+                    </div>
+                </div>
+                <div class="row mx-5 my-5">
+                    <div class="col-lg-10 col-md-4">
+                        {{ form.size|as_crispy_field}}
+                    </div>
+                </div>
 
-                        <div class="form-outline mb-4">
-                             {{ form.price_per_day|as_crispy_field}}
-                        </div>
+                <div class="row mx-5 my-5">
+                    <div class="col-lg-10 col-md-4">
+                        {{ form.price_per_day|as_crispy_field}}
+                    </div>
+                </div>
 
-                        <!--For facilities options-->
+                <div class="row mx-5 my-5">
+                    <div class="col-lg-10 col-md-4">
+                        {{ form.facilities|as_crispy_field}}
+                    </div>
+                </div>
 
-                        <h5>Facilities*</h5><br>
-                        <div class="multiselect">
-                            <script>  var expanded=false;</script>
-                            <div class="selectBox" onclick="function showCheckboxes() {
-                                 var checkboxes = document.getElementById('checkboxes');
-                                 if (!expanded) {
-                                     checkboxes.style.display = 'block';
-                                     expanded = true;
-                                 }
-                                 else {
-                                     checkboxes.style.display = 'none';
-                                     expanded = false;
-                                 }
-                            }
+                <div class="row mx-5 my-5">
+                    <div class="col-lg-10 col-md-4">
+                        {{ form.rooms|as_crispy_field}}
+                    </div>
+                </div>
 
-
-
-                            showCheckboxes()">
-                              <select>
-                                <option>Select options</option>
-                              </select>
-                              <div class="overSelect"></div>
-                            </div>
-                            <div id="checkboxes">
-                                <label for="Security">
-                                   <input type="checkbox" id="Security" /> Security</label>
-                                <label for="Wifi">
-                                   <input type="checkbox" id="Wifi" /> Wifi</label>
-                                <label for="Other">
-                                   <input type="checkbox" id="Other" /> Other</label>
-                            </div>
-                        </div>
-
-                        <br><br>
-
-                        <!--for rooms options-->
-
-                        <h5>Rooms*</h5><br>
-                        <div class="multiselect">
-                            <script>  var expanded=false;</script>
-                            <div class="selectBox" onclick="function showCheckboxes2() {
-                                 var checkboxes = document.getElementById('checkboxes2');
-                                 if (!expanded) {
-                                     checkboxes.style.display = 'block';
-                                     expanded = true;
-                                 }
-                                 else {
-                                     checkboxes.style.display = 'none';
-                                     expanded = false;
-                                 }
-                            }
-
-
-                            showCheckboxes2()">
-                              <select>
-                                <option>Select options</option>
-                              </select>
-                              <div class="overSelect"></div>
-                            </div>
-                            <div id="checkboxes2">
-                                <label for="Type1">
-                                   <input type="checkbox" id="Type1" /> Type1</label>
-                                <label for="Type2">
-                                   <input type="checkbox" id="Type2" /> Type2</label>
-                                <label for="Other">
-                                   <input type="checkbox" id="Other" /> Other</label>
-                            </div>
-                        </div>
-
-                        <br>
-                        <br>
-                        <div class="row m-5 justify-content-center">
+                <div class="row m-5 justify-content-center">
                     <div class="col-12">
                         <button type="submit" class="btn btn-primary w-100">Submit</button>
                     </div>
@@ -142,19 +75,10 @@
         </form>
         </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script>
     document.getElementById("hide").style.display = "none";
 </script>
-
-{#{% endblock %}#}
-
-        </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script>
-        document.getElementById("hide").style.display = "none";
-    </script>
     </body>
+{#{% endblock %}#}
 </html>
