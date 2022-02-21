@@ -1,15 +1,32 @@
 from django.db import models
 
-
 # Create your models here.
 # storage is declared as abstract class
 # other classes like personal room ,business storage, garage and climate controlled
 # will inherit from this Storage Base class
+
+location_choices = [
+    ('Bogura', 'Bogura'),
+    ('Cox\'s Bazar', 'Cox\'s Bazar'),
+    ('Dhaka', 'Dhaka'),
+    ('Chittagong', 'Chittagong'),
+    ('Khulna', 'Khulna'),
+    ('Rajshahi', 'Rajshahi'),
+    ('Sylhet', 'Sylhet'),
+    ('Rangpur', 'Rangpur'),
+    ('Mymensingh', 'Mymensingh'),
+    ('Barisal', 'Barisal'),
+    ('Dinajpur', 'Dinajpur'),
+    ('Comilla', 'Comilla'),
+]
+
+
 class Storage(models.Model):
     user_id = models.ForeignKey('User.User', on_delete=models.CASCADE)
     property_name = models.CharField(max_length=100)
     description = models.CharField(max_length=100)
-    location = models.CharField(max_length=255)
+    location = models.CharField(max_length=100)
+    location_district = models.CharField(max_length=255, choices=location_choices, default='none')
     size = models.IntegerField()
     # TODO: ADD IMAGE FIELD
     created_at = models.DateTimeField(auto_now_add=True)

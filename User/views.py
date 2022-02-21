@@ -48,6 +48,7 @@ def register(request):
             nid_number = form.cleaned_data['nid_number']
             date_of_birth = form.cleaned_data['date_of_birth']
             phone_number = form.cleaned_data['phone_number']
+            location = form.cleaned_data['location']
 
             existing_user = User.objects.filter(Q(email=email) | Q(nid_number=nid_number))
             if existing_user:
@@ -55,7 +56,7 @@ def register(request):
                 return render(request, 'auth/register.html', context)
             else:
                 new_user = User(name=user_name, email=email, password=password, nid_number=nid_number,
-                                date_of_birth=date_of_birth, phone_number=phone_number)
+                                date_of_birth=date_of_birth, phone_number=phone_number, location=location)
                 new_user.save()
                 messages.success(request, 'User created successfully, please log in to continue')
                 return redirect('login')
