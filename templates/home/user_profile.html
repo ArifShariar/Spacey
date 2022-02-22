@@ -1,9 +1,61 @@
-{% extends 'base/base.html' %}
-{% block title %}{{ user.name }}{{% endblock %}
-{% block home %}{% url 'homepage' user.id %}{% endblock %}
-{% block profile %}{% url 'profile' user.id %}{% endblock %}
-{% block content %}
-    {{ user.name }}<br>
-    {{ user.email }}<br>
-    {{ user.phoneNumber }}<br>
-{% endblock %}
+{% load static %}
+<html>
+  <head>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="padding-left: 2.5%;padding-right: 2.5%">
+          <div class="collapse navbar-collapse" id="navbarNav"  style="align-self: flex-start;width: 50%;">
+            <ul class="navbar-nav" style="display: flex; justify-content: space-between; align-items: center;">
+              <li class="nav-item active" style="padding-right: 10px;">
+                <a class="nav-link" href="{% url 'homepage' user.id %}">Home</a>
+              </li>
+                <li class="nav-item active" style="padding-right: 10px;">
+                <a class="nav-link" href="{% url 'host' user.id %}">Host</a>
+              </li>
+              <li class="nav-item" style="padding-right: 10px;">
+                <a class="nav-link" href="{% url 'profile' user.id %}">Profile</a>
+              </li>
+
+
+            </ul>
+          </div>
+      <div style="align-self: flex-end;width: 50%;">
+          <form method="post">
+                {% csrf_token %}
+
+                <div class="input-group">
+                    <select class="custom-select" id="item" name="item">
+                      <option selected>Choose...</option>
+                      <option value="Business Storages">Business Storages</option>
+                      <option value="Climate Controlled">Climate Controlled</option>
+                      <option value="Garages">Garages</option>
+                      <option value="Vehicles">Vehicles</option>
+                  </select>
+                  <div class="input-group-append">
+                    <button class="btn btn-secondary" type="submit" >Search</button>
+                  </div>
+                </div>
+            </form>
+      </div>
+    </nav>
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css'%}" />
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+    <body>
+        <div style = "padding:5px; background-color: #5b80b2">
+            <div style="background-position: center;position:center; padding-left: 40%">
+                <div class="card" style="width: 18rem;">
+                      <img class="card-img-top" src="{% static 'images/dp.png' %}" alt="image not available">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ user.name}}</h5>
+                        <p class="card-text"> {{ user.location }} </p>
+                          <p>  {{ user.phone_number }}</p>
+                      </div>
+                </div>
+            </div>
+
+        </div>
+
+    </body>
+
+</html>

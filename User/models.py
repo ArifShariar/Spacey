@@ -30,3 +30,8 @@ class User(models.Model):
 
     def __str__(self):
         return self.name
+
+
+
+#class homepage_object(models.Model):
+
