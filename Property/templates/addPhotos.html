@@ -50,9 +50,8 @@
          <form action="addPhoto" method="post">
             {% csrf_token %}
             <input type="hidden" name="id" value="{{ pk }}" placeholder="User ID" ><br>
-            <input type="hidden" name="desc" value="{{ description }}" placeholder="Description" ><br>
-            <input type="hidden" name="loc" value="{{ location }}" placeholder="Location" ><br>
             <input type="hidden" name="type" value="{{ type }}" placeholder="Type" ><br>
+             <input type="hidden" name="property_id" value="{{ property_id }}"><br>
             <input required name="images" type="file" multiple class="form-control-file">
             <button type="submit" class="btn btn-primary btn-lg btn-block  " style="color:white;background-color: #5b80b2">
                             Post

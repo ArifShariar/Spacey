@@ -28,20 +28,20 @@ def hosting_successful(request, pk):
 # def openPhotosUI()
 
 def addPhoto(request, pk):
+    user = User.objects.get(pk=pk)
+    context = {'user': user}
     images = request.POST.getlist('images')
-    user_id = request.POST.get('id', False)
-    desc = request.POST.get('desc', False)
-    loc = request.POST.get('loc', False)
     storage_type = request.POST.get('type', False)
+    property_id = request.POST.get('property_id', False)
     storage = None
     if storage_type == "Personal":
-        storage = Personal.objects.get(Q(user_id=user_id) & Q(description=desc) & Q(location=loc))
+        storage = Personal.objects.get(pk=property_id)
     elif storage_type == "Business":
-        storage = Business.objects.get(Q(user_id=user_id) & Q(description=desc) & Q(location=loc))
+        storage = Business.objects.get(pk=property_id)
     elif storage_type == "ClimateControlled":
-        storage = ClimateControlled.objects.get(Q(user_id=user_id) & Q(description=desc) & Q(location=loc))
-    else:
-        storage = Garage.objects.get(Q(user_id=user_id) & Q(description=desc) & Q(location=loc))
+        storage = ClimateControlled.objects.get(pk=property_id)
+    elif storage_type == "Garage":
+        storage = Garage.objects.get(pk=property_id)
     print(len(images))
     for image in images:
         photo = Photo(
@@ -50,7 +50,7 @@ def addPhoto(request, pk):
             storageType=storage_type
         )
         photo.save()
-    return render(request, 'host/hosting_success.html')
+    return render(request, 'host/hosting_success.html', context)
 
 
 def host_personal_room(request, pk):
@@ -63,9 +63,10 @@ def host_personal_room(request, pk):
         if form.is_valid():
             description = form.data.get('description')
             location = form.data.get('location')
-            form.save()
+            instance = form.save()
+            property_id = instance.pk
             s_type = "Personal"
-            context = {'pk': pk, 'type': s_type, 'description': description, 'location': location}
+            context = {'pk': pk, 'type': s_type, 'property_id': property_id}
             return render(request, 'addPhotos.html', context)
     return render(request, 'host/personal_room_host.html', context)
 
@@ -80,9 +81,11 @@ def host_business_storage(request, pk):
         if form.is_valid():
             description = form.data.get('description')
             location = form.data.get('location')
-            form.save()
+            instance = form.save()
+            property_id = instance.pk
+            print(property_id)
             s_type = "Business"
-            context = {'pk': pk, 'type': s_type, 'description': description, 'location': location}
+            context = {'pk': pk, 'type': s_type, 'property_id': property_id}
             return render(request, 'addPhotos.html', context)
     return render(request, 'host/business_storage_host.html', context)
 
@@ -97,9 +100,10 @@ def host_climate_controlled_storage(request, pk):
         if form.is_valid():
             description = form.data.get('description')
             location = form.data.get('location')
-            form.save()
+            instance = form.save()
+            property_id = instance.pk
             s_type = "ClimateControlled"
-            context = {'pk': pk, 'type': s_type, 'description': description, 'location': location}
+            context = {'pk': pk, 'type': s_type, 'property_id': property_id}
             return render(request, 'addPhotos.html', context)
     return render(request, 'host/climate_controlled_storage_host.html', context)
 
@@ -114,8 +118,9 @@ def host_garage(request, pk):
         if form.is_valid():
             description = form.data.get('description')
             location = form.data.get('location')
-            form.save()
+            instance = form.save()
+            property_id = instance.pk
             s_type = "Garage"
-            context = {'pk': pk, 'type': s_type, 'description': description, 'location': location}
+            context = {'pk': pk, 'type': s_type, 'property_id': property_id}
             return render(request, 'addPhotos.html', context)
     return render(request, 'host/garage_host.html', context)

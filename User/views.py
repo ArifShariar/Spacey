@@ -91,12 +91,7 @@ def homepage(request, pk):
             messages.error(request, "No property found")
         return render(request, 'home/homepage.html', context)
 
-    context = {
-        'p_prop': None,
-        'b_prop': None,
-        'c_prop': None,
-        'g_prop': None,
-    }
+    context = {'p_prop': None, 'b_prop': None, 'c_prop': None, 'g_prop': None, 'user': user}
     print(user.location)
     p_temp = Personal.objects.filter(location_district=user.location)
     if p_temp.exists():
