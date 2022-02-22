@@ -32,6 +32,3 @@ class User(models.Model):
         return self.name
 
 
-
-#class homepage_object(models.Model):
-

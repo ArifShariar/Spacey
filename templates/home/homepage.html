@@ -13,6 +13,9 @@
               <li class="nav-item" style="padding-right: 10px;">
                 <a class="nav-link" href="{% url 'profile' user.id %}">Profile</a>
               </li>
+                   <li class="nav-item" style="padding-right: 10px;">
+                <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+            </li>
 
 
             </ul>
@@ -27,7 +30,7 @@
                       <option value="Business Storages">Business Storages</option>
                       <option value="Climate Controlled">Climate Controlled</option>
                       <option value="Garages">Garages</option>
-                      <option value="Vehicles">Vehicles</option>
+                      <option value="Personal">Personal</option>
                   </select>
                   <div class="input-group-append">
                     <button class="btn btn-secondary" type="submit" >Search</button>
@@ -58,7 +61,7 @@
                 {% if properties %}
                     {% for property in properties %}
                         <div class="card" style="width: 18rem;">
-                          <img class="card-img-top" src="{% static 'images/garage2.jpeg' %}" alt="image not available">
+                          <img class="card-img-top" src="{% static 'images/house_black_48dp.svg' %}" alt="image not available">
                           <div class="card-body">
                             <h5 class="card-title">{{ property.property_name}}</h5>
                             <p class="card-text"> {{ property.description }} </p>
@@ -70,9 +73,9 @@
             </div>
 
         <div class="div_layout " style="padding-top: 10px;padding-bottom: 10px;">
-            {% if b_prop.property_name %}
+            {% if b_prop is not None %}
                 <div class="card" style="width: 18rem;">
-                  <img class="card-img-top" src="{% static 'images/house1.jpg' %}" alt="image not available">
+                  <img class="card-img-top" src="{% static 'images/business.jpeg' %}" alt="image not available">
                   <div class="card-body">
                     <h5 class="card-title" >{{ b_prop.property_name}}</h5>
                     <p class="card-text"> {{ b_prop.description }},{{ b_prop.id }} </p>
@@ -80,9 +83,9 @@
                   </div>
                 </div>
             {% endif %}
-                {% if c_prop.property_name %}
+                {% if c_prop is not None %}
                     <div class="card" style="width: 18rem;">
-                      <img class="card-img-top" src="{% static 'images/house2.jpg' %}" alt="image not available">
+                      <img class="card-img-top" src="{% static 'images/cold_storage.jpg' %}" alt="image not available">
                       <div class="card-body">
                         <h5 class="card-title">{{ c_prop.property_name}}</h5>
                         <p class="card-text"> {{ c_prop.description }} </p>
@@ -90,21 +93,21 @@
                     </div>
 
             {% endif %}
-                {% if g_prop.property_name %}
+                {% if g_prop is not None %}
                     <div class="card" style="width: 18rem;">
-                      <img class="card-img-top" src="{% static 'images/cold_storage.jpg' %}" alt="image not available">
+                      <img class="card-img-top" src="{% static 'images/garage2.jpeg' %}" alt="image not available">
                       <div class="card-body">
                         <h5 class="card-title">{{ g_prop.property_name}}</h5>
                         <p class="card-text"> {{ g_prop.description }} </p>
                       </div>
                     </div>
                 {% endif %}
-                    {% if v_prop.property_name %}
+                    {% if p_prop is not None %}
                         <div class="card" style="width: 18rem;">
-                          <img class="card-img-top" src="{% static 'images/cold_storage2.jpg' %}" alt="image not available">
+                          <img class="card-img-top" src="{% static 'images/house1.jpg' %}" alt="image not available">
                           <div class="card-body">
-                            <h5 class="card-title">{{ v_prop.property_name}}</h5>
-                            <p class="card-text"> {{ v_prop.description }} </p>
+                            <h5 class="card-title">{{ p_prop.property_name}}</h5>
+                            <p class="card-text"> {{ p_prop.description }} </p>
                           </div>
                         </div>
 

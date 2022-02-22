@@ -13,8 +13,10 @@ class HostPersonalRoomForm(forms.ModelForm):
 
     class Meta:
         model = Personal
-        fields = ('user_id', 'property_name', 'description', 'location', 'location_district', 'size', 'facilities',
-                  'price_per_day', 'rooms')
+        fields = (
+            'user_id', 'property_name', 'description', 'location', 'location_district', 'size', 'max_guest',
+            'facilities',
+            'price_per_day', 'rooms')
 
 
 class HostBusinessStorageForm(forms.ModelForm):
@@ -55,5 +57,7 @@ class HostGarageForm(forms.ModelForm):
 
     class Meta:
         model = Garage
-        fields = ('user_id', 'property_name', 'description', 'location', 'location_district', 'size', 'facilities',
-                  'price_per_hour', 'vehicles')
+        fields = (
+            'user_id', 'property_name', 'description', 'location', 'location_district', 'size', 'max_vehicle',
+            'facilities',
+            'price_per_hour', 'vehicles')

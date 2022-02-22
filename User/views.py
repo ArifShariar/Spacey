@@ -80,7 +80,7 @@ def homepage(request, pk):
             properties = ClimateControlled.objects.all()
         elif item == "Garages":
             properties = Garage.objects.all()
-        else :
+        elif item == "Personal":
             properties = Personal.objects.all()
 
         context = {
@@ -90,68 +90,91 @@ def homepage(request, pk):
         if not properties:
             messages.error(request, "No property found")
         return render(request, 'home/homepage.html', context)
-
-    b_prop = Business()
-    b_photo = Photo()
-    v_prop = Personal()
-    v_photo = Photo()
-    c_prop = ClimateControlled()
-    c_photo = Photo()
-    g_prop = Garage()
-    g_photo = Photo()
-
-    location = user.location
-    properties = Business.objects.all()
-    photos = Photo.objects.all()
-
-    for p in properties:
-        if p.location_district == location:
-            b_prop = p
-            break
-
-    properties = Garage.objects.all()
-    for p in properties:
-        if p.location_district == location:
-            g_prop = p
-            break
-
-    properties = Personal.objects.all()
-    for p in properties:
-        if p.location == location:
-            v_prop = p
-            break
-
-    properties = ClimateControlled.objects.all()
-    for p in properties:
-        if p.location_district == location:
-            c_prop = p
-            break
-
-    for ph in photos:
-        if ph.storageID == b_prop.id:
-            b_photo = ph
-        elif ph.storageID == c_prop.id:
-            c_photo = ph
-        elif ph.storageID == v_prop.id:
-            v_photo = ph
-        elif ph.storageID == g_prop.id:
-            g_photo = ph
-
+    #
+    # b_prop = Business()
+    # b_photo = Photo()
+    # v_prop = Personal()
+    # v_photo = Photo()
+    # c_prop = ClimateControlled()
+    # c_photo = Photo()
+    # g_prop = Garage()
+    # g_photo = Photo()
+    #
+    # location = user.location
+    # properties = Business.objects.all()
+    # photos = Photo.objects.all()
+    #
+    # for p in properties:
+    #     if p.location_district == location:
+    #         b_prop = p
+    #         break
+    #
+    # properties = Garage.objects.all()
+    # for p in properties:
+    #     if p.location_district == location:
+    #         g_prop = p
+    #         break
+    #
+    # properties = Personal.objects.all()
+    # print(properties)
+    # for p in properties:
+    #     if p.location == location:
+    #         v_prop = p
+    #         break
+    #
+    # properties = ClimateControlled.objects.all()
+    # for p in properties:
+    #     if p.location_district == location:
+    #         c_prop = p
+    #         break
+    #
+    #
+    # for ph in photos:
+    #     if ph.storageID == b_prop.id:
+    #         b_photo = ph
+    #     elif ph.storageID == c_prop.id:
+    #         c_photo = ph
+    #     elif ph.storageID == v_prop.id:
+    #         v_photo = ph
+    #     elif ph.storageID == g_prop.id:
+    #         g_photo = ph
+    #
+    # context = {
+    #     'user': user,
+    #     'b_prop': b_prop,
+    #     'b_photo': b_photo,
+    #     'c_prop': c_prop,
+    #     'c_photo': c_photo,
+    #     'v_prop': v_prop,
+    #     'v_photo': v_photo,
+    #     'g_prop': g_prop,
+    #     'g_photo': g_photo,
+    # }
     context = {
-        'user': user,
-        'b_prop': b_prop,
-        'b_photo': b_photo,
-        'c_prop': c_prop,
-        'c_photo': c_photo,
-        'v_prop': v_prop,
-        'v_photo': v_photo,
-        'g_prop': g_prop,
-        'g_photo': g_photo,
+        'p_prop': None,
+        'b_prop': None,
+        'c_prop': None,
+        'g_prop': None,
     }
+    print(user.location)
+    p_temp = Personal.objects.filter(location_district=user.location)
+    if p_temp.exists():
+        context['p_prop'] = p_temp[0]
+
+    b_temp = Business.objects.filter(location_district=user.location)
+    if b_temp.exists():
+        context['b_prop'] = b_temp[0]
+
+    c_temp = ClimateControlled.objects.filter(location_district=user.location)
+    if c_temp.exists():
+        context['c_prop'] = c_temp[0]
+
+    g_temp = Garage.objects.filter(location_district=user.location)
+    if g_temp.exists():
+        context['g_prop'] = g_temp[0]
+
+    print(context)
     return render(request, 'home/homepage.html', context)
-
-
-
 
 
 def user_profile(request, pk):
