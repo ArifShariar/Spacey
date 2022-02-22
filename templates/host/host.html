@@ -39,7 +39,7 @@
           <div class="collapse navbar-collapse" id="navbarNav"  style="align-self: flex-start;width: 50%;">
             <ul class="navbar-nav" style="display: flex; justify-content: space-between; align-items: center;">
               <li class="nav-item active" style="padding-right: 10px;">
-                <a class="nav-link" href="{% block home %}{% endblock %}">Home</a>
+                <a class="nav-link" href="{% url 'homepage' user.id %}">Home</a>
               </li>
                 <li class="nav-item active" style="padding-right: 10px;">
                 <a class="nav-link" href="{% url 'host' user.id %}">Host</a>
