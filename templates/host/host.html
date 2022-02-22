@@ -7,6 +7,9 @@
 <html>
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css'%}" />
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <style>
         .bg-gra-01 {
@@ -32,59 +35,42 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #28073d;">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="#">Spacey</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">About</a>
-                </li>
-                  <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Rent</a>
-                </li>
-                  <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Profile</a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    More
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="overflow:visible">
-                    <li><a class="dropdown-item" href="#">Hosting history</a></li>
-                    <li><a class="dropdown-item" href="#">Renting history</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Logout</a></li>
-                  </ul>
-                </li>
-              </ul>
-              <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-              </form>
-            </div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="padding-left: 2.5%;padding-right: 2.5%">
+          <div class="collapse navbar-collapse" id="navbarNav"  style="align-self: flex-start;width: 50%;">
+            <ul class="navbar-nav" style="display: flex; justify-content: space-between; align-items: center;">
+              <li class="nav-item active" style="padding-right: 10px;">
+                <a class="nav-link" href="{% block home %}{% endblock %}">Home</a>
+              </li>
+                <li class="nav-item active" style="padding-right: 10px;">
+                <a class="nav-link" href="{% url 'host' user.id %}">Host</a>
+              </li>
+              <li class="nav-item" style="padding-right: 10px;">
+                <a class="nav-link" href="{% url 'profile' user.id %}">Profile</a>
+              </li>
+
+
+            </ul>
           </div>
-        </nav>
-    </header>
+      <div style="align-self: flex-end;width: 50%;">
+          <form method="post">
+                {% csrf_token %}
 
-
-
-    <div class="container-fluid container-hidden-overflow bg-gra-02 bg-gra-01">
-        <div class="row h-100 align-items-center">
-            <div class="col-12 justify-content-center mx-auto text-center">
-                <div class="container-fluid container-hidden-overflow shadow p-3 mx-auto w-50 h-50 rounded" style="font-size: 100px">
-                    <b>SPACEY</b><br>
-                    <b>HOSTING</b>
+                <div class="input-group">
+                    <select class="custom-select" id="item" name="item">
+                      <option selected>Choose...</option>
+                      <option value="Business Storages">Business Storages</option>
+                      <option value="Climate Controlled">Climate Controlled</option>
+                      <option value="Garages">Garages</option>
+                      <option value="Vehicles">Vehicles</option>
+                  </select>
+                  <div class="input-group-append">
+                    <button class="btn btn-secondary" type="submit" >Search</button>
+                  </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-
-
+            </form>
+      </div>
+    </nav>
+    </header>
 
     <span class="text-center m-5"><h3>What type of space would you like to host?</h3></span> <br>
 

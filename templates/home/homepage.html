@@ -5,7 +5,7 @@
           <div class="collapse navbar-collapse" id="navbarNav"  style="align-self: flex-start;width: 50%;">
             <ul class="navbar-nav" style="display: flex; justify-content: space-between; align-items: center;">
               <li class="nav-item active" style="padding-right: 10px;">
-                <a class="nav-link" href="{% block home %}{% endblock %}">Home</a>
+                <a class="nav-link" href="{% url 'homepage' user.id %}">Home</a>
               </li>
                 <li class="nav-item active" style="padding-right: 10px;">
                 <a class="nav-link" href="{% url 'host' user.id %}">Host</a>
@@ -58,12 +58,13 @@
                 {% if properties %}
                     {% for property in properties %}
                         <div class="card" style="width: 18rem;">
-                          <img class="card-img-top" src="{{ b_photo.image }}" alt="image not available">
+                          <img class="card-img-top" src="{% static 'images/garage2.jpeg' %}" alt="image not available">
                           <div class="card-body">
                             <h5 class="card-title">{{ property.property_name}}</h5>
                             <p class="card-text"> {{ property.description }} </p>
                           </div>
                         </div>
+
                     {% endfor %}
                 {% endif %}
             </div>
@@ -71,7 +72,7 @@
         <div class="div_layout " style="padding-top: 10px;padding-bottom: 10px;">
             {% if b_prop.property_name %}
                 <div class="card" style="width: 18rem;">
-                  <img class="card-img-top" src="{{ b_photo.image }}" alt="image not available">
+                  <img class="card-img-top" src="{% static 'images/house1.jpg' %}" alt="image not available">
                   <div class="card-body">
                     <h5 class="card-title" >{{ b_prop.property_name}}</h5>
                     <p class="card-text"> {{ b_prop.description }},{{ b_prop.id }} </p>
@@ -81,7 +82,7 @@
             {% endif %}
                 {% if c_prop.property_name %}
                     <div class="card" style="width: 18rem;">
-                      <img class="card-img-top" src="{{ c_photo.image }}" alt="image not available">
+                      <img class="card-img-top" src="{% static 'images/house2.jpg' %}" alt="image not available">
                       <div class="card-body">
                         <h5 class="card-title">{{ c_prop.property_name}}</h5>
                         <p class="card-text"> {{ c_prop.description }} </p>
@@ -89,9 +90,9 @@
                     </div>
 
             {% endif %}
-                {% if g_prop.property_name%}
+                {% if g_prop.property_name %}
                     <div class="card" style="width: 18rem;">
-                      <img class="card-img-top" src="{{ g_photo.image }}" alt="image not available">
+                      <img class="card-img-top" src="{% static 'images/cold_storage.jpg' %}" alt="image not available">
                       <div class="card-body">
                         <h5 class="card-title">{{ g_prop.property_name}}</h5>
                         <p class="card-text"> {{ g_prop.description }} </p>
@@ -100,7 +101,7 @@
                 {% endif %}
                     {% if v_prop.property_name %}
                         <div class="card" style="width: 18rem;">
-                          <img class="card-img-top" src="{{ v_photo.image }}" alt="image not available">
+                          <img class="card-img-top" src="{% static 'images/cold_storage2.jpg' %}" alt="image not available">
                           <div class="card-body">
                             <h5 class="card-title">{{ v_prop.property_name}}</h5>
                             <p class="card-text"> {{ v_prop.description }} </p>

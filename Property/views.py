@@ -33,6 +33,7 @@ def addPhoto(request, pk):
     desc = request.POST.get('desc', False)
     loc = request.POST.get('loc', False)
     storage_type = request.POST.get('type', False)
+    storage = None
     if storage_type == "Personal":
         storage = Personal.objects.get(Q(user_id=user_id) & Q(description=desc) & Q(location=loc))
     elif storage_type == "Business":

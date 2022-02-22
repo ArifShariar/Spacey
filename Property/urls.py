@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     # TODO: PASS USER ID IN THE URLS TO MAKE DYNAMIC URL ROUTING
@@ -11,4 +13,4 @@ urlpatterns = [
     path('<str:pk>/host/climate_controlled_storage', views.host_climate_controlled_storage,
          name='host_climate_controlled_storage'),
     path('<str:pk>/host/garage', views.host_garage, name='host_garage'),
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

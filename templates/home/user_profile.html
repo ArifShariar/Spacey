@@ -5,7 +5,7 @@
           <div class="collapse navbar-collapse" id="navbarNav"  style="align-self: flex-start;width: 50%;">
             <ul class="navbar-nav" style="display: flex; justify-content: space-between; align-items: center;">
               <li class="nav-item active" style="padding-right: 10px;">
-                <a class="nav-link" href="{% block home %}{% endblock %}">Home</a>
+                <a class="nav-link" href="{% url 'homepage' user.id %}">Home</a>
               </li>
                 <li class="nav-item active" style="padding-right: 10px;">
                 <a class="nav-link" href="{% url 'host' user.id %}">Host</a>
@@ -42,10 +42,18 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   </head>
     <body>
-        <div>
-            {{ user }}<br>
-            {{ user.location }}
-            {{ user.phone_number }}
+        <div style = "padding:5px; background-color: #5b80b2">
+            <div style="background-position: center;position:center; padding-left: 40%">
+                <div class="card" style="width: 18rem;">
+                      <img class="card-img-top" src="{% static 'images/dp.png' %}" alt="image not available">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ user.name}}</h5>
+                        <p class="card-text"> {{ user.location }} </p>
+                          <p>  {{ user.phone_number }}</p>
+                      </div>
+                </div>
+            </div>
+
         </div>
 
     </body>
