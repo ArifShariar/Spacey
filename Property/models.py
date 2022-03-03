@@ -18,6 +18,7 @@ location_choices = [
     ('Barisal', 'Barisal'),
     ('Dinajpur', 'Dinajpur'),
     ('Comilla', 'Comilla'),
+    ('Jessore', 'Jessore'),
 ]
 
 
